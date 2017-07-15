@@ -1,0 +1,159 @@
+body{
+    position: relative;
+    padding: 0;
+}
+.top{
+    margin-top: 40px;
+}
+
+.navbar-default{
+    background-color: dodgerblue;
+    border-color: dodgerblue;
+}
+.navbar-default .navbar-nav>li>a{
+    color: white;
+}
+.navbar-default .navbar-nav > .active > a, 
+.navbar-default .navbar-nav > .active > a:focus, 
+.navbar-default .navbar-nav > .active > a:hover{
+    color: white;
+    background-color: blue;
+}
+.navbar-default .navbar-nav > li > a:focus,
+.navbar-default .navbar-nav > li > a:hover{
+    color: white;
+    background-color: blue;
+}
+.navbar-default .navbar-brand {
+	color: white;
+    font-weight: 800;
+}
+.navbar-default .navbar-brand:focus, 
+.navbar-default .navbar-brand:hover{
+    color: white;
+}
+/*Log out button css*/
+.navbar-default .navbar-nav > .open > a, 
+.navbar-default .navbar-nav > .open > a:focus, 
+.navbar-default .navbar-nav > .open > a:hover{
+    background-color: dodgerblue;
+    color: white;
+}
+.dropdown-menu > li > a:focus, 
+.dropdown-menu > li > a:hover{
+    background-color: dodgerblue;
+    color: white;
+}
+.dropdown-menu > li > a{
+    background-color: dodgerblue;
+    color: white;
+    padding: 3px 20px;
+}
+/*----------------------------*/
+#home_first_section{
+     background-image: url('../images/header_image.png');
+     background-repeat: no-repeat;
+     background-size: cover;
+     background-position: center;
+     height: 400px;
+}
+#emp_home_first_section{
+    background-image: url('../images/slider-main-bg.jpg');
+     background-repeat: no-repeat;
+     background-size: cover;
+     background-position: center;
+     height: 400px;
+}
+.home_search .row .col-lg-6 {
+	background-color: white;
+    padding: 10px;
+    padding-top: 20px;
+    text-align: center;
+}
+.home_search .btn-default{
+	background-color: #E95831;
+    border-radius: 0;
+    padding-left: 30px;
+    padding-right: 30px;
+    color: white;
+}
+.first_sec_h1{
+    text-align: center;
+    color: white;
+    margin-top: 130px;
+}
+.h1home {
+	text-align: center;
+    background-color: royalblue;
+    color: white;
+    margin: 20px;
+    padding: 30px;
+    padding-bottom: 50px;
+    padding-top: 50px;
+}
+.emp_h1home{
+    text-align: center;
+    background-color: royalblue;
+    color: white;
+    margin-right: 5px;
+    margin-top: 50px;
+    padding: 30px;
+    padding-bottom: 50px;
+    padding-top: 50px;
+}
+.h1home>h1, .h1home>a {
+    text-transform: uppercase;
+    color: white; 
+}
+.more_btn {
+	text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.more_btn .btn {
+	border-radius: 0;
+    text-transform: uppercase;
+}
+footer{
+    background-color: black;
+    color: white;
+}
+footer .foot_links{
+    padding: 20px;
+}
+footer .col-lg-3 h5{
+    text-transform: uppercase;
+}
+footer .col-lg-3 a{
+    color: dimgray;
+}
+footer .social a{
+    border: 1px solid white;
+    color: dodgerblue;
+    border-radius: 50%;
+    font-size: 20px;
+    margin-right: 20px;
+    text-decoration: none;
+    
+}
+footer .social a i{
+    padding: 5px;
+}
+footer .social #a2{
+    color: blueviolet;
+}
+footer .social #a3{
+    color: red;
+}
+.copyright {
+	text-align: center;
+    color: white;
+    background-color: #333;
+    padding-top: 15px;
+    padding-bottom: 10px;
+}
+#for_emp {
+    border: 1px solid white;
+    border-radius: 5px;
+    margin-right: 20px;
+}
