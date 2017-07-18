@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     @yield('h')
     <title>@yield('title')</title>
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/font-awesome.min.css">
-    <link rel="stylesheet" href="../css/custom.css">
+    <link rel="stylesheet" href="{{asset('/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('/css/font-awesome.min.css')}}">
+    <link rel="stylesheet" href="{{asset('/css/custom.css')}}">
 </head>
 
 <body>
@@ -121,8 +121,8 @@
             </div>
         </div>
     </footer>
-    <script src="../js/jquery-2.1.4.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
+    <script src="{{asset('/js/jquery-2.1.4.js')}}"></script>
+    <script src="{{asset('/js/bootstrap.min.js')}}"></script>
     @yield('script')
 </body>
 
