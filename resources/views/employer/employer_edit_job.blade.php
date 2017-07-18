@@ -1,6 +1,6 @@
 @extends('layout.employer_main')
 
-@section('title', 'Post a job')
+@section('title', 'Edit job')
 
 @section('content')
 
@@ -8,12 +8,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h3><strong>Post a Job</strong></h3>
-                    <form action="{{route('employer.post_job')}}" method="post">
+                    <h3><strong>Edit this Job</strong></h3>
+                    <form action="/employer/job/store/{{$jobData->id}}" method="post">
                     {{csrf_field()}}
                         <div class="form-group{{$errors->has('title')?' has-error':''}}">
                             <label for="title">Job Title</label>
-                            <input type="text" name="title" class="form-control" id="title" placeholder="Enter job title" value="{{old('title')}}">
+                            <input type="text" name="title" class="form-control" id="title" placeholder="Enter job title" value="{{$jobData->title}}">
                             @if($errors->has('title'))
                                 <span class="help-block">
                                     <strong>{{$errors->first('title')}}</strong>
@@ -22,7 +22,7 @@
                         </div>
                         <div class="form-group{{$errors->has('description')?' has-error':''}}">
                             <label for="description">Job Description</label>
-                            <textarea rows="4" cols="30" name="description" class="form-control" id="description" placeholder="Job Description">{{old('description')}}</textarea>
+                            <textarea rows="4" cols="30" name="description" class="form-control" id="description" placeholder="Job Description">{{$jobData->description}}</textarea>
                             @if($errors->has('description'))
                                 <span class="help-block">
                                     <strong>{{$errors->first('description')}}</strong>
@@ -31,7 +31,7 @@
                         </div>
                         <div class="form-group{{$errors->has('requirement')?' has-error':''}}">
                             <label for="requirement">Position Requirements</label>
-                            <textarea rows="4" cols="30" name="requirement" class="form-control" id="requirement" placeholder="Position requirements">{{old('requirement')}}</textarea>
+                            <textarea rows="4" cols="30" name="requirement" class="form-control" id="requirement" placeholder="Position requirements">{{$jobData->requirement}}</textarea>
                             @if($errors->has('requirement'))
                                 <span class="help-block">
                                     <strong>{{$errors->first('requirement')}}</strong>
@@ -81,7 +81,7 @@
                         </div>
                         <div class="form-group{{$errors->has('deadline')?' has-error':''}}">
                             <label for="deadline">Application Deadline</label>
-                            <input type="date" name="deadline" class="form-control" id="deadline" placeholder="YYYY-MM-DD" value="{{old('deadline')}}">
+                            <input type="date" name="deadline" class="form-control" id="deadline" placeholder="YYYY-MM-DD" value="{{$jobData->deadline}}">
                             @if($errors->has('deadline'))
                                 <span class="help-block">
                                     <strong>{{$errors->first('deadline')}}</strong>
@@ -117,7 +117,7 @@
                         </div>
                         <div class="form-group{{$errors->has('language')?' has-error':''}}">
                             <label for="language">Language Skills</label>
-                            <input type="text" name="language" class="form-control" id="language" placeholder="Language skills" value="{{old('language')}}">
+                            <input type="text" name="language" class="form-control" id="language" placeholder="Language skills" value="{{$jobData->language}}">
                             @if($errors->has('language'))
                                 <span class="help-block">
                                     <strong>{{$errors->first('language')}}</strong>
@@ -126,7 +126,7 @@
                         </div>
                         <div class="form-group{{$errors->has('skill')?' has-error':''}}">
                             <label for="skill">Professional Skills</label>
-                            <input type="text" name="skill" class="form-control" id="skill" placeholder="Professional Skills" value="{{old('skill')}}"> 
+                            <input type="text" name="skill" class="form-control" id="skill" placeholder="Professional Skills" value="{{$jobData->skill}}"> 
                             @if($errors->has('skill'))
                                 <span class="help-block">
                                     <strong>{{$errors->first('skill')}}</strong>
@@ -135,17 +135,11 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-lg-2 col-lg-offset-4">
-                                <input type="submit" class="btn btn-warning" style="border-radius: 0;" value="POST JOB NOW">
+                            <div class="col-lg-2 col-lg-offset-5">
+                                <input type="submit" class="btn btn-warning" style="border-radius: 0;" value="SAVE JOB">
                                 <br><br>
                             </div>
-                            {{-- <div class="col-lg-6">
-                                <input type="submit" class="btn btn-default" style="border-radius: 0;" value="SAVE AS DRAFT">
-                                <br>
-                                <br>
-                            </div> --}}
                         </div>
-
                     </form>
                     <!-- form ends here -->
                 </div>

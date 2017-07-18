@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>@yield('title')</title>
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/font-awesome.min.css">
-    <link rel="stylesheet" href="../css/custom.css">
+    <link rel="stylesheet" href="{{asset('/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('/css/font-awesome.min.css')}}">
+    <link rel="stylesheet" href="{{asset('/css/custom.css')}}">
 </head>
 
 <body>
@@ -27,19 +27,45 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <div class="row">
-                            <div class="col-lg-6 col-lg-offset-3">
+                            <div class="col-lg-6 col-lg-offset-2">
                                 <ul class="nav navbar-nav ">
-                                    <li class=""><a href="#">Home <span class="sr-only">(current)</span></a></li>
-                                    <li><a href="">Dashboard</a></li>
-                                    <li><a href="">Post a Job</a></li>
+                                    <li class=""><a href="/employer">Home <span class="sr-only">(current)</span></a></li>
+                                    @if(!Auth::guest())
+                                    <li><a href="{{route('employer.dashboard')}}">Dashboard</a></li>
                                     <li><a href="#">CV Search</a></li>
-                                    <li><a href="#">Company profile</a></li>
+                                    <li><a href="{{route('employer.company_profile')}}">Company profile</a></li>
+                                    @endif
+                                    <li><a href="{{route('employer.post_job')}}">Post a Job</a></li>
                                     <li><a href="#">Job journal</a></li>
                                 </ul>
                             </div>
+
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a href="#">Sign up</a></li>
-                                <li><a href="#">Log in</a></li>
+                            @if(Auth::guest())
+                                <li><a href="{{route('employer.register')}}">Sign up</a></li>
+                                <li><a href="{{route('login')}}">Log in</a></li>
+                                <li id="for_emp"><a href="/">For Jobseeker</a></li>
+                            @else
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                            Logout
+                                        </a>
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
+                                    </li>
+                                </ul>
+                            </li>
+                        @endif
                             </ul>
                         </div>
 
@@ -52,10 +78,10 @@
         <!-- first .contaienr-fluid ends here -->
     </header>
     <!--Nav Ends Here -->
-
+   
     @section('content')
         @show
-
+    
 
    <!-- -Footer tarts here- -->
     <footer>
@@ -96,8 +122,9 @@
             </div>
         </div>
     </footer>
-    <script src="../js/jquery-1.11.3.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
+    <script src="{{asset('/js/jquery-1.11.3.min.js')}}"></script>
+    <script src="{{asset('/js/bootstrap.min.js')}}"></script>
+    @yield('script')
 </body>
 
 </html>

@@ -30,9 +30,9 @@
                         <div class="row">
                             <div class="col-lg-5 col-lg-offset-3">
                                 <ul class="nav navbar-nav ">
-                                    <li class=""><a href="">Home <span class="sr-only">(current)</span></a></li>
+                                    <li class=""><a href="/">Home <span class="sr-only">(current)</span></a></li>
                                     @if(!Auth::guest())
-                                        <li><a href="">Dashboard</a></li>
+                                        <li><a href="/seeker/dashboard">Dashboard</a></li>
                                         <li><a href="{{route('seeker.edit_cv')}}">My CV</a></li>
                                     @endif
                                     <li><a href="{{route('seeker.find_jobs')}}">Find jobs</a></li>
@@ -44,7 +44,7 @@
                         @if (Auth::guest())
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('seeker.register') }}">Sign Up</a></li>
-                            <li id="for_emp"><a href="">For Employer</a></li>
+                            <li id="for_emp"><a href="/employer">For Employer</a></li>
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">

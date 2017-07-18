@@ -10,25 +10,51 @@
                 <div class="col-lg-4 col-lg-offset-4">
                     <h4><strong>Sign up for Job Board</strong></h4>
                     <p><strong>Join today and find top talent for your company</strong></p>
-                    <form>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Name</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter first name">
+                    <form  role="form" action="{{route('employer.register')}}" method="post">
+                    {{csrf_field()}}
+                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" placeholder="Enter your name"  required autofocus>
+                            @if ($errors->has('name'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                            @endif
+                        </div>
+                        <div class="form-group{{$errors->has('email') ? ' has-error': ''}}">
+                            <label for="email">Email address</label>
+                            <input type="email" class="form-control" name="email" value="{{old('email')}}" id="email" placeholder="Enter email" required>
+                            @if($errors->has('email'))
+                                <span class="help-block">
+                                    <strong>{{$errors->first('email')}}</strong>
+                                </span>
+                            @endif
+                        </div>
+                        <div class="form-group{{$errors->has('password') ? ' has-error': ''}}">
+                            <label for="password">Password</label>
+                            <input type="password" name="password" class="form-control" id="password" placeholder="Password" required>
+                            @if($errors->has('password'))
+                                <span class="help-block">
+                                    <strong>{{$errors->first('password')}}</strong>
+                                </span>
+                            @endif
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Email address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                            <label for="confirm-password">Confirm Password</label>
+                            <input type="password" name="password_confirmation" class="form-control" id="confirm-password" placeholder="Confirm password">
                         </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                        <div class="form-group{{$errors->has('phone')?' has-error': ''}}">
+                            <label for="phone">Phone Number</label>
+                            <input type="text" class="form-control" id="phone" placeholder="Enter your phone no." name="phone">
+                            @if($errors->has('phone'))
+                                <span class="help-block">
+                                    <strong>{{$errors->first('phone')}}</strong>
+                                </span>
+                            @endif
                         </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Phone Number</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter your phone no.">
-                        </div>
+                        <input type="hidden" name="employer" value="1">
 
-                        <button type="submit" class="btn btn-warning form-control" style="text-transform: uppercase;border-radius:0;">Sign up as employer</button>
+                        <input type="submit" class="btn btn-warning form-control" value="Sign up as employer" style="text-transform: uppercase;border-radius:0;">
                     </form>
                     <br>
                     <p><strong>Already a member?</strong></p>

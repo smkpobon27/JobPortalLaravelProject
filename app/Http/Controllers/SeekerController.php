@@ -3,11 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Activity;
+use App\Attachment;
+use App\Link;
 use App\Skill;
 use App\User;
 use App\Work;
+use Illuminate\Filesystem\putFileAs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class SeekerController extends Controller
 {
@@ -24,7 +28,7 @@ class SeekerController extends Controller
 	    	$personalInfo->user_id = Auth::id();
 	    	$personalInfo->save();
     	}else{
-    		//else if this 'user_id' exist already in this table then just update it.
+    		//else if this 'user_id' already  exist in this table then just update it.
     	 Activity::where('user_id', Auth::id())->update(['location'=>$request->location]);
     	}
 
@@ -85,7 +89,11 @@ class SeekerController extends Controller
     	$works = Work::where('user_id', Auth::id())->get();
     	$skills = Skill::where('user_id', Auth::id())->get();
     	$user = User::find(Auth::id());
-    	return view('jobseeker.seeker_edit_cv', compact('works','skills','user'));
+    	$activities = Activity::where('user_id', Auth::id())->get();
+    	$links = Link::where('user_id', Auth::id())->get();
+    	$attachments = Attachment::where('user_id', Auth::id())->get();
+
+    	return view('jobseeker.seeker_edit_cv', compact('works','skills','user','activities','links','attachments'));
     }
     //store Edit_CV personal data
     public function storeEditCv(Request $request){
@@ -93,6 +101,67 @@ class SeekerController extends Controller
     	$activities = Activity::where('user_id', Auth::id())->update(['location'=>$request->location,'gender'=>$request->gender]);
     	
     	return $request->all();
+    }
+    //profile image upload
+    public function profileImageUpload(Request $request){
+    	$pro_image = $request->file('proimage');
+    	if($request->hasFile('proimage')){
+    		$proimage_original_name = $pro_image->getClientOriginalName();
+    		Storage::putFileAs('public/images', $pro_image, $proimage_original_name);
+    	}
+    	User::where('id', Auth::id())->update(['image'=>$proimage_original_name]);
+	    
+    	return redirect()->route('seeker.edit_cv');
+    }
+    //store About me function data
+    public function aboutMe(Request $request){
+    	$about = $request->about_me;
+    	Activity::where('user_id', Auth::id())->update(['about_me'=>$about]);
+    	return $request->all();
+    }
+    //store Attachments data
+    public function attachments(Request $request){
+    	$doc = $request->file('document');
+    	if($request->hasFile('document')){
+    		$doc_orginal_name = $doc->getClientOriginalName();
+    		Storage::putFileAs('public/attachments', $doc, $doc_orginal_name);
+    	}
+    	$newAttachment = new Attachment;
+    	$newAttachment->name = $request->doc_name;
+    	$newAttachment->document = $doc_orginal_name;
+    	$newAttachment->user_id = Auth::id();
+    	$newAttachment->save();
+
+    	return redirect()->route('seeker.edit_cv');
+    }
+    //store Links data
+    public function links(Request $request){
+    	$newLink = new Link;
+    	$newLink->name = $request->link_name;
+    	$newLink->url = $request->url;
+    	$newLink->user_id = Auth::id();
+    	$newLink->save();
+
+    	return $request->all();
+    }
+    //Show seeker Dashboard page
+    public function showSeekerDashboard(){
+    	$user = User::find(Auth::id());
+    	return view('jobseeker.seeker_dashboard', compact('user'));
+    }
+    //show CV view page
+    public function seekerCvView(){
+    	$user = User::find(Auth::id());
+    	$activity = Activity::where('user_id', Auth::id())->first();
+    	$works = Work::where('user_id', Auth::id())->get();
+    	$skills = Skill::where('user_id', Auth::id())->get();
+    	$attachments = Attachment::where('user_id', Auth::id())->get();
+    	$links = Link::where('user_id', Auth::id())->get();
+    	return view('jobseeker.seeker_cv_view', compact('user','activity','works','skills','attachments','links'));
+    }
+    //show seeker home page
+    public function index(){
+    	return view('jobseeker.index');
     }
 
 }//controller ends here

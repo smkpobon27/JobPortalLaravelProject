@@ -8,13 +8,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-2">
-                    <img src="../images/header_image.png" alt="..." class="img-thumbnail" style="height: 180px; width: 500px;">
+                    <img src="{{asset('storage/company_images/'.$company->image)}}" alt="Brand Image" class="img-thumbnail" style="height: 180px; width: 500px;">
                 </div>
                 <div class="col-lg-10">
-                    <h1>Company name here</h1>
-                    <p>Welcome to your company's workspace {user name here}</p>
+                    <h1>{{$company->name}}</h1>
+                    <p>Welcome to your company's workspace [ <strong>{{$user->name}}</strong> ]</p>
                     <div>
-                        <a href="" class="btn btn-warning" style="border-radius: 0;"><i class="fa fa-arrow-circle-up"></i> POST A JOB</a>
+                        <a href="{{route('employer.post_job')}}" class="btn btn-warning" style="border-radius: 0;"><i class="fa fa-arrow-circle-up"></i> POST A JOB</a>
                         <a href="" class="btn btn-default" style="border-radius: 0;"><i class="fa fa-database"></i> SEARCH CV DATABASE</a>
                     </div>
                 </div>
@@ -48,21 +48,24 @@
                             </thead>
 
                             <tbody>
+                            @foreach($activeJobs as $job)
                                 <tr>
-                                    <td>Manager</td>
-                                    <td>IT/Software</td>
-                                    <td>11/11/2018</td>
-                                    <td>34/44/2042</td>
-                                    <td><a href="" class="btn btn-danger" style="border-radius: 0;"><i class="fa fa-trash"></i> DELETE</a></td>
+                                    <td>{{$job->title}}</td>
+                                    <td>{{$job->industry}}</td>
+                                    <td>{{$job->created_at->format('d-m-Y')}}</td>
+                                    <td>{{$job->deadline}}</td>
+                                    <td><a href="/employer/job/delete/{{$job->id}}" class="btn btn-danger" style="border-radius: 0;"><i class="fa fa-trash"></i> DELETE</a></td>
                                     <td><a href="" class="btn btn-default" style="border-radius: 0;"><i class="fa fa-eye"></i> VIEW JOB</a></td>
-                                    <td><a href="" class="btn btn-warning" style="border-radius: 0;"><i class="fa fa-edit"></i> EDIT</a></td>
+                                    <td><a href="/employer/job/edit/{{$job->id}}" class="btn btn-warning" style="border-radius: 0;"><i class="fa fa-edit"></i> EDIT</a></td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                         <!-- Active jobs table ends here -->
 
                         <br>
-                        <h4><strong>Unpublished Jobs</strong></h4>
+                        {{-- This codes are for DRAFTED JOBS. I'll handle it later --}}
+                        {{-- <h4><strong>Unpublished Jobs</strong></h4>
                         <br>
                         <table class="table">
                             <thead>
@@ -86,7 +89,7 @@
                                     <td><a href="" class="btn btn-warning" style="border-radius: 0;"><i class="fa fa-edit"></i> EDIT</a></td>
                                 </tr>
                             </tbody>
-                        </table>
+                        </table> --}}
                         <!-- Unpublished jobs table ends here -->
                     </div>
                     <!-- myJobs end here -->

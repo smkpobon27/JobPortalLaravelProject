@@ -8,13 +8,16 @@
         <div class="container">
             <h3><strong>Edit Your CV</strong></h3>
             <div class="row">
-                <div class="col-lg-2">
-                    <img src="../images/header_image.png" alt="Profile image" class="img-thumbnail img-responsive" style="height: 180px; width: 500px;">
+            <div class="col-lg-2">
+            <img src="{{asset('storage/images/'.$user->image)}}" alt="Profile image" class="img-thumbnail img-responsive" style="height: 180px; width: 500px;">
+            <br>
+            <form action="{{route('proimage_upload')}}" method="post" enctype="multipart/form-data">
+            {{csrf_field()}}
+                    <input type="file" name="proimage" id="proimage">
                     <br>
-                    <input type="file" name="image">
-                    <br>
-                    <button class="btn btn-primary" id="upload">UPLOAD</button>
-                </div>
+                    <input class="btn btn-primary" type="submit" value="UPLOAD" id="upload_image"/>
+            </form>
+            </div>
                 <div class="col-lg-10">
                                 <!-- -First section -->
                     <div class="form-horizontal" id="sec_1">
@@ -75,20 +78,23 @@
                 </div>
             </div>
             <!-- row ends here -->
+
             <!-- Second section starts here- -->
             <div class="row">
                 <div class="col-lg-12">
                     <div class="form-horizontal">
                         <div class="form-group">
                             <label for="about_me" class="col-sm-1 control-label">About Me: </label>
-                            <div class="col-sm-11">
-                                <textarea name="about_me" class="form-control" rows="4" cols="20" id="about_me" placeholder="Write something about yourself"></textarea>
+                            <div class="col-sm-11" id="about">
+                            @foreach($activities as $activity)
+                                <textarea name="about_me" class="form-control" rows="4" cols="20" id="about_me" placeholder="Write something about yourself">{{$activity->about_me}}</textarea>
                                 <br>
+                            @endforeach
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-offset-1 col-sm-10">
-                                <button type="submit" name="personal_2" class="btn btn-warning">Save</button>
+                                <button type="submit" name="personal_2" class="btn btn-warning" id="about_me_btn">Save</button>
                                 <br>
                                 <br>
                             </div>
@@ -99,13 +105,14 @@
             <!-- row ends here -->
 
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-12" id="edu">
                     <h4><strong>Your Education</strong></h4>
+                    @foreach($activities as $activity)
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="college">College/University</label>
-                                <input type="text" name="college" class="form-control" id="college" placeholder="Institution name">
+                                <input type="text" name="college" class="form-control" id="college" value="{{$activity->college}}" placeholder="Institution name">
                             </div>
                             <div class="form-group">
                                 <label for="degree">Degree Level</label>
@@ -118,14 +125,14 @@
                             </div>
                             <div class="form-group">
                                 <label for="field">Field of Study</label>
-                                <input type="text" name="field" class="form-control" id="field" placeholder="Field of study">
+                                <input type="text" name="field" class="form-control" id="field" value="{{$activity->field}}" placeholder="Field of study">
                             </div>
                         </div>
 
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="grade">Grade</label>
-                                <input type="text" name="grade" class="form-control" id="grade" placeholder="Grade (i.e A, 100%)">
+                                <input type="text" name="grade" class="form-control" id="grade" value="{{$activity->grade}}" placeholder="Grade (i.e A, 100%)">
                             </div>
                             <div class="form-group">
                                 <label for="country">Country</label>
@@ -138,7 +145,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="language">Languages</label>
-                                <input type="text" name="language" class="form-control" id="language" placeholder="Languages">
+                                <input type="text" name="language" class="form-control" id="language" value="{{$activity->language}}" placeholder="Languages">
                             </div>
                         </div>
                     </div>
@@ -146,72 +153,18 @@
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label for="interest">Interests and Activities</label>
-                                <input type="text" name="interest" class="form-control" id="interest" placeholder="Interests and activities">
+                                <input type="text" name="interest" class="form-control" id="interest" value="{{$activity->interest}}" placeholder="Interests and activities">
                             </div>
                         </div>
                         <div class="form-group">
                             <div class=" col-sm-12">
-                                <button type="submit" name="personal_3" class="btn btn-warning">Save</button>
+                                <button type="submit" name="personal_3" class="btn btn-warning" id="edu_save">Save</button>
                                 <br>
                                 <br>
                             </div>
                         </div>
                     </div>
-
-                </div>
-            </div>
-            <!-- row ends here -->
-
-            <div class="row">
-                <div class="col-lg-12">
-                    <h4><strong>Attachments</strong></h4>
-                    <div class="row">
-                        <div class="col-lg-8">
-                            <div class="form-group">
-                                <label for="doc_name">Name of the document:</label>
-                                <input type="text" name="doc_name" class="form-control" id="doc_name" placeholder="Name of the document">
-
-                            </div>
-                            <div class="form-group">
-                                <label for="document">Select document:</label>
-                                <input type="file" name="document"  id="document" placeholder="Name of the document">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class=" col-sm-12">
-                                <button type="submit" name="personal_4" class="btn btn-warning">+ UPLOAD</button>
-                                <br>
-                                <br>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- row ends here -->
-
-            <div class="row">
-                <div class="col-lg-12">
-                    <h4><strong>Links</strong></h4>
-                    <div class="row">
-                        <div class="col-lg-8">
-                            <div class="form-group">
-                                <label for="link_name">Link Name:</label>
-                                <input type="text" name="link_name" class="form-control" id="link_name" placeholder="Name of the link">
-                            </div>
-                            <div class="form-group">
-                                <label for="url">Url:</label>
-                                <input type="text" name="url" class="form-control" id="url" placeholder="Url">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class=" col-sm-12">
-                                <button type="submit" name="personal_5" class="btn btn-warning">SAVE</button>
-                                <br>
-                                <br>
-                            </div>
-                        </div>
-                    </div>
+            @endforeach
                 </div>
             </div>
             <!-- row ends here -->
@@ -283,6 +236,73 @@
                 </div>
             </div>
             <!-- row ends here - -->
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <h4><strong>Attachments</strong></h4>
+                     @foreach($attachments as $attachment)
+                        <p><a href="{{$attachment->document}}">{{$attachment->name}}</a></p>
+                     @endforeach
+                    <form action="{{route('seeker.attachment')}}" method="post" enctype="multipart/form-data">
+                    {{csrf_field()}}
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="form-group">
+                                <label for="doc_name">Name of the document:</label>
+                                <input type="text" name="doc_name" class="form-control" id="doc_name" placeholder="Name of the document" required="required">
+
+                            </div>
+                            <div class="form-group">
+                                <label for="document">Select document:</label>
+                                <input type="file" name="document"  id="document">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class=" col-sm-12">
+                                <input type="submit" class="btn btn-warning" value="+ UPLOAD" />
+                                <br>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+            <!-- row ends here -->
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <h4><strong>Links</strong></h4>
+                    <div class="row" id="link">
+                    @foreach($links as $link)
+                        <div class="col-lg-6"><strong style="color: green;">{{$link->name}} :</strong> </div>
+                        <div class="col-lg-6"><a href="{{$link->url}}">{{$link->url}}</a>
+                        <br></div>
+                    @endforeach
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="form-group">
+                                <label for="link_name">Link Name:</label>
+                                <input type="text" name="link_name" class="form-control" id="link_name" placeholder="Name of the link" required="required">
+                            </div>
+                            <div class="form-group">
+                                <label for="url">Url:</label>
+                                <input type="text" name="url" class="form-control" id="url" placeholder="eg. www.example.com">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class=" col-sm-12">
+                                <button type="submit" name="personal_5" class="btn btn-warning" id="link_save">SAVE</button>
+                                <br>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- row ends here -->
 
         </div>
         <!--First container-fluid ends here -->
@@ -446,7 +466,56 @@ jQuery(document).ready(function($) {
                     console.log(data);
                 });
             });
-            
+            //This function is for SAVING work experience data 
+            $('#save').click(function(event) {
+                var job_title= $('#job_title').val();
+                var company_name= $('#company_name').val();
+                var country= $('#country').val();
+                var industry= $('#industry').val();
+                var job_role= $('#job_role').val();
+                var activity= $('#activity').val();
+                // var vfrom= $('#from').val();
+                // var vto= $('#to').val();
+                // console.log(vto);
+                $.post('{{route('seeker.work')}}', {'_token':$('input[name=_token]').val(), 'job_title':job_title,'company_name':company_name,'country':country,'industry':industry,'job_role':job_role,'activity':activity }, function(data) {
+                    $('#works').load(location.href + ' #works');
+                    console.log(data);
+                });
+                //'_token':$('meta[name="csrf-token"]').attr('content'), <-this is for the meta tag csrf_token() which is same as normal csrf_field() useness.
+            });
+
+            //About me button ajax
+            $('#about_me_btn').click(function(event) {
+                var about = $('#about_me').val();
+                $.post('{{route('seeker.about')}}', {'_token':$('input[name=_token]').val(), 'about_me':about}, function(data) {
+                    $('#about').load(location.href + ' #about');
+                    console.log(data);
+                });
+            });
+            //Education data ajax
+            $('#edu_save').click(function(event) {
+                var clg = $('#college').val();
+                var degree = $('#degree').val();
+                var field = $('#field').val();
+                var grade = $('#grade').val();
+                var country = $('#country').val();
+                var language = $('#language').val();
+                var interest = $('#interest').val();
+                $.post('{{route('seeker.edu')}}',{'_token':$('input[name=_token]').val(), 'college':clg, 'degree':degree, 'field':field, 'grade':grade, 'country':country, 'language':language, 'interest':interest}, function(data) {
+                    $('#edu').load(location.href + ' #edu');
+                    console.log(data);
+                });
+            });
+            //Links data upload ajax
+            $('#link_save').click(function(event) {
+                var link_name = $('#link_name').val();
+                var link_url = $('#url').val();
+                $.post('{{route('seeker.link')}}',{'_token':$('input[name=_token]').val(), 'link_name':link_name, 'url':link_url}, function(data) {
+                    $('#link').load(location.href + ' #link');
+                    console.log(data);
+                });
+            });
+
 });
 </script>
 @endsection
