@@ -119,4 +119,10 @@ class EmployerController extends Controller
 
     	return redirect()->route('employer.dashboard');
     }
+    //View Job page for employer
+    public function viewJob($id){
+        $jobData = Job::find($id);
+        $company = Company::where('user_id', Auth::id())->first();
+        return view('employer.employer_job_view', compact('jobData','company'));
+    }
 }

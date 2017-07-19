@@ -157,24 +157,27 @@
             </div>
 <!-- ---------Section for Jobs--------------------------- -->
                 <div class="col-lg-6 ">
+                @foreach($jobs as $job)
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Job title</h3>
+                            <h3 class="panel-title">{{$job->title}}</h3>
                         </div>
                         <div class="panel-body">
                             <div class="row">
-                                <div class="col-lg-4"><i class="fa fa-eye-slash"></i> Print Company name</div>
-                                <div class="col-lg-4"><i class="fa fa-location-arrow"></i> Print Location</div>
+                                <div class="col-lg-4"><i class="fa fa-eye-slash"></i> {{$job->user->company->name}}</div> 
+                                {{-- here the relationship is job belongs to one user->and user has one company --}}
+                                <div class="col-lg-4"><i class="fa fa-location-arrow"></i> {{$job->city}}</div>
                                 <div class="col-lg-4">
                                     <div class="form-group">
                                         <div class="col-sm-offset-6 col-sm-10">
-                                            <button type="submit" class="btn btn-warning">VIEW</button>
+                                            <a href="/seeker/job/view/{{$job->id}}" target="_blank" class="btn btn-warning">VIEW</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    @endforeach
                     
                 </div>
             </div>

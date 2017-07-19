@@ -55,7 +55,7 @@
                                     <td>{{$job->created_at->format('d-m-Y')}}</td>
                                     <td>{{$job->deadline}}</td>
                                     <td><a href="/employer/job/delete/{{$job->id}}" class="btn btn-danger" style="border-radius: 0;"><i class="fa fa-trash"></i> DELETE</a></td>
-                                    <td><a href="" class="btn btn-default" style="border-radius: 0;"><i class="fa fa-eye"></i> VIEW JOB</a></td>
+                                    <td><a href="/employer/job/view/{{$job->id}}" class="btn btn-default" style="border-radius: 0;"><i class="fa fa-eye"></i> VIEW JOB</a></td>
                                     <td><a href="/employer/job/edit/{{$job->id}}" class="btn btn-warning" style="border-radius: 0;"><i class="fa fa-edit"></i> EDIT</a></td>
                                 </tr>
                                 @endforeach

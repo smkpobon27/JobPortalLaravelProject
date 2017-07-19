@@ -29,4 +29,16 @@ class User extends Authenticatable
     public function isSeeker(){
         return $this->seeker;
     }
+    // //User has one company
+    public function company(){
+        return $this->hasOne(Company::class);
+    }
+    //A User has many job
+    public function many_job(){
+        return $this->belongsToMany(Job::class)->withTimestamps();
+    }
+    //User has one location
+    public function activity(){
+        return $this->hasOne(Activity::class);
+    }
 }

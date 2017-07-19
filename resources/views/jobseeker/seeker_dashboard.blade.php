@@ -50,15 +50,17 @@
                             </thead>
 
                             <tbody>
+                            @foreach($user->many_job as $job)
                                 <tr>
-                                    <td>Manager</td>
-                                    <td>Pran RFL</td>
-                                    <td>IT/Software</td>
-                                    <td>Dhaka</td>
-                                    <td>34/44/2042</td>
+                                    <td>{{$job->title}}</td>
+                                    <td>{{$job->user->company->name}}</td>
+                                    <td>{{$job->industry}}</td>
+                                    <td>{{$job->city}}</td>
+                                    <td>{{$job->pivot->created_at->format('d-M-Y')}}</td>
                                     <td><a href="" class="btn btn-warning" style="border-radius: 0;"><i class="fa fa-trash"></i> DELETE</a></td>
                                     <td><a href="" class="btn btn-default" style="border-radius: 0;"><i class="fa fa-eye"></i> VIEW APPLICATION</a></td>
                                 </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>

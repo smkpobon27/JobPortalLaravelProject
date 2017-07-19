@@ -24,7 +24,6 @@ Route::post('seeker/edu', 'SeekerController@education');
 Route::get('seeker/work', 'SeekerController@showWorkAndSkillForm')->name('seeker.work');
 Route::post('seeker/work', 'SeekerController@work');
 Route::post('seeker/skill', 'SeekerController@skill')->name('seeker.skill');
-Route::get('seeker/find-jobs', 'SeekerController@showFindJobs')->name('seeker.find_jobs');
 Route::get('seeker/edit-cv', 'SeekerController@showEditCv')->name('seeker.edit_cv');
 Route::post('seeker/edit-cv', 'SeekerController@storeEditCv');
 Route::post('seeker/image', 'SeekerController@profileImageUpload')->name('proimage_upload');
@@ -33,7 +32,11 @@ Route::post('seeker/links', 'SeekerController@links')->name('seeker.link');
 Route::post('seeker/attachment', 'SeekerController@attachments')->name('seeker.attachment');
 Route::get('seeker/dashboard', 'SeekerController@showSeekerDashboard');
 Route::get('seeker/cv-view', 'SeekerController@seekerCvView');
-//----------------------------------
+Route::get('seeker/find-jobs', 'SeekerController@showFindJobs')->name('seeker.find_jobs');
+Route::get('seeker/job/view/{id}', 'SeekerController@viewJob');
+Route::get('seeker/job/apply/{id}', 'SeekerController@showApplyJobForm');
+Route::get('seeker/apply/successfull/{id}', 'SeekerController@appliedToJob');
+//--------------------------------------------------------------------------------------------
 //Employer normal routes
 Route::get('/employer', 'EmployerController@index');
 Route::get('/employer/company-profile', 'EmployerController@createCompanyProfile')->name('employer.company_profile');
@@ -45,8 +48,8 @@ Route::get('/employer/dashboard', 'EmployerController@showEmployerDashboard')->n
 Route::get('/employer/job/delete/{id}', 'EmployerController@deleteJob');
 Route::get('/employer/job/edit/{id}', 'EmployerController@showEditJobForm');
 Route::post('/employer/job/store/{id}', 'EmployerController@storeEditedJob');
-
-//--------------------------------------
+Route::get('/employer/job/view/{id}', 'EmployerController@viewJob');
+//----------------------------------------------------------------------------------------
 //Auth routes
 //seeker routes
 Route::get('seeker-register', 'Auth\RegisterController@showSeekerRegistrationForm')->name('seeker.register');
@@ -55,7 +58,7 @@ Route::post('seeker-register', 'Auth\RegisterController@seekerRegister');
 //Employer routes
 Route::get('employer-register', 'Auth\RegisterController@showEmployerRegistrationForm')->name('employer.register');
 Route::post('employer-register', 'Auth\RegisterController@employerRegister');
-//------------
+//-------------------------------------------------------------------------------------
 
 Auth::routes();
 

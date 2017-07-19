@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Activity;
 use App\Attachment;
+use App\Company;
+use App\Job;
 use App\Link;
 use App\Skill;
 use App\User;
@@ -79,10 +81,6 @@ class SeekerController extends Controller
     	$newSkill->save();
 
     	return $request->all();
-    }
-    //Shows the Find jobs page with available jobs
-    public function showFindJobs(){
-    	return view('jobseeker.seeker_find_jobs');
     }
     //show edit cv form
     public function showEditCv(){
@@ -162,6 +160,28 @@ class SeekerController extends Controller
     //show seeker home page
     public function index(){
     	return view('jobseeker.index');
+    }
+    //Seeker Job view page
+    public function viewJob($id){
+        $jobData = Job::find($id);
+        return view('jobseeker.seeker_job_view', compact('jobData'));
+    }
+     //Shows the Find jobs page with available jobs
+    public function showFindJobs(){
+        $jobs = Job::where('posted', 1)->get();
+        return view('jobseeker.seeker_find_jobs', compact('jobs'));
+    }
+    //show Apply to a Job Form
+    public function showApplyJobForm($id){
+        $job = Job::find($id);
+        $user = User::find(Auth::id());
+        return view('jobseeker.seeker_apply_now', compact('job','user'));
+    }
+    //successfully Applied to Job
+    public function appliedToJob($id){
+        $user = User::find(Auth::id());
+        $user->many_job()->attach($id);
+        return redirect()->route('seeker.find_jobs');
     }
 
 }//controller ends here
