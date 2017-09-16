@@ -9,7 +9,7 @@
         <form action="/admin/keyword-wise-jobs" method="get">
         {{csrf_field()}}
             <div class="row">
-                <div class="col-lg-6 col-lg-offset-4">
+                <div class="col-lg-6 col-lg-offset-3">
                     <input type="text" name="searchQuery" class="form-control" placeholder="Search Keywords" value="{{ old('searchQuery') }}">
                 </div>
                 <div class="col-lg-2">

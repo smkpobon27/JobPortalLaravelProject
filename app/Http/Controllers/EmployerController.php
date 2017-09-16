@@ -161,4 +161,14 @@ class EmployerController extends Controller
     public function sendEmail(){
         Mail::send(new MailToSeeker());
     }
+    //show all cv
+    public function allCvList(){
+        $users = User:: where('seeker', '1')->get();
+
+        return view('employer.employer_cv_search', compact('users'));
+     }
+       //contact me page
+     public function contact(){
+         return view('contact');
+     }
 }

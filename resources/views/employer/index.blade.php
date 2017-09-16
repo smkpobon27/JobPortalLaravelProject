@@ -13,12 +13,12 @@
                         <div class="row" style="text-align: center;">
                             <div class="col-lg-5 col-lg-offset-1">
                                 <div class="form-group">
-                                    <a class="btn btn-success form-control" id="exampleInputEmail1" style="border-radius: 0;">Post a Job Now</a>
+                                    <a class="btn btn-success form-control" style="border-radius: 0;" href="{{route('employer.post_job')}}">Post a Job Now</a>
                                 </div>
                             </div>
                             <div class="col-lg-5">
                                 <div class="form-group">
-                                    <a class="btn btn-primary form-control" style="border-radius: 0;">Search our CV Database</a>
+                                    <a class="btn btn-primary form-control" style="border-radius: 0;" href="{{route('employer_cv_view')}}">Search our CV Database</a>
                                 </div>
                             </div>
                         </div>
@@ -38,26 +38,26 @@
             <div class="row">
                 <div class="col-lg-3 emp_h1home" style="margin-left: -20px;">
                     <h1>Find</h1>
-                    <p>Search by Category</p>
+                    <a href="{{route('employer_cv_view')}}" style="color: white;">Search by Category</a>
                 </div>
                 <div class="col-lg-3 emp_h1home">
                     <h1>Your</h1>
-                    <p>Search by Industry</p>
+                    <a href="{{route('employer_cv_view')}}" style="color: white;">Search by Industry</a>
                 </div>
                 <div class="col-lg-3 emp_h1home">
                     <h1>Best</h1>
-                    <p>Search by Company</p>
+                    <a href="{{route('employer_cv_view')}}" style="color: white;">Search by Company</a>
                 </div>
                 <div class="col-lg-3 emp_h1home">
                     <h1>Employee</h1>
-                    <p>Search by City</p>
+                    <a href="{{route('employer_cv_view')}}" style="color: white;">Search by City</a>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-4 col-lg-offset-4 more_btn">
                     <h2>Find Exceptional People</h2>
                     <br>
-                    <a href="" class="btn btn-warning btn-lg">SIGN UP NOW</a>
+                    <a href="{{route('employer.register')}}" class="btn btn-warning btn-lg">SIGN UP NOW</a>
                 </div>
             </div>
         </div>

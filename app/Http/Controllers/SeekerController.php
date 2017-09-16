@@ -204,5 +204,9 @@ class SeekerController extends Controller
         $jobs = Job::where('title', 'like', '%'.$request->searchQuery.'%')->get();
          return view('jobseeker.seeker_find_jobs', compact('jobs'));
      }
+      //contact me page
+     public function contact(){
+         return view('contact');
+     }
 
 }//controller ends here

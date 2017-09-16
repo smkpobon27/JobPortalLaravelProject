@@ -45,7 +45,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-4 col-lg-offset-4 more_btn">
-                    <a href="" class="btn btn-warning btn-lg">Find More Jobs Here</a>
+                    <a href="{{route('seeker.register')}}" class="btn btn-warning btn-lg">Find More Jobs Here</a>
                 </div>
             </div>
         </div>

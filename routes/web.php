@@ -46,6 +46,7 @@ Route::get('seeker/category-wise-jobs', 'SeekerController@showCategoryWiseJobs')
 Route::get('seeker/location-wise-jobs', 'SeekerController@showLocationWiseJobs');
 Route::get('seeker/keyword-wise-jobs', 'SeekerController@showJobsBySearchKeywords');
 
+Route::get('/contact', 'SeekerController@contact');
 //--------------------------------------------------------------------------------------------
 //Employer normal routes
 Route::get('/employer', 'EmployerController@index');
@@ -65,6 +66,7 @@ Route::group(['middleware'=>['auth', 'employer']], function(){
 	Route::get('/employer/view/seeker-cv/{id}', 'EmployerController@employerCvView');
 	Route::get('/employer/email/{id}', 'EmployerController@showEmailToSeekerForm');
 	Route::post('/employer/email/send', 'EmployerController@sendEmail');
+	Route::get('/employer/cv-list', 'EmployerController@allCvList')->name('employer_cv_view');
 });
 //========================================================================================
 //Admin normal routes
@@ -82,7 +84,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>['auth','admin']], function(){
 	// Route::get('/admin/user/role/{id}', 'AdminController@changeRole');
 	Route::get('/cv-list', 'AdminController@allCvList')->name('all_cv');
 	Route::get('/user/view-cv/{id}', 'AdminController@viewCv');
-	Route::get('/user/delete-cv/{id}', 'AdminController@deleteCv');
+	// Route::get('/user/delete-cv/{id}', 'AdminController@deleteCv');
 });
 
 //----------------------------------------------------------------------------------------

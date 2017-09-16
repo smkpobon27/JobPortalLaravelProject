@@ -89,16 +89,16 @@
             <div class="row foot_links">
                 <div class="col-lg-3">
                     <h5>Job Seekers</h5>
-                    <p><a href="">Post your CV</a></p>
-                    <p><a href="">Advanced job search</a></p>
+                    <p><a href="{{route('seeker.edit_cv')}}">Post your CV</a></p>
+                    <p><a href="{{route('seeker.find_jobs')}}">Advanced job search</a></p>
                     <p><a href="">Tips for finding jobs</a></p>
                     <p> <a href="">Create a perfect CV</a></p>
                     <p><a href="">Terms of service for job seekers</a></p>
                 </div>
                 <div class="col-lg-3">
                     <h5>Employers</h5>
-                    <p><a href="">Post a job</a></p>
-                    <p><a href="">CV search</a></p>
+                    <p><a href="{{route('employer.post_job')}}">Post a job</a></p>
+                    <p><a href="{{route('employer_cv_view')}}">CV search</a></p>
                     <p><a href="">Tips for recruiting</a></p>
                     <p><a href="">Terms of service for employers</a></p>
                 </div>
@@ -106,7 +106,7 @@
                     <h5>About Us</h5>
                     <p><a href="">About us</a></p>
                     <p><a href="">Privacy policy</a></p>
-                    <p><a href="">Contact Us</a></p>
+                    <p><a href="/contact">Contact Us</a></p>
                 </div>
                  <div class="col-lg-3 social">
                     <a href="https://www.facebook.com/smkpobonru" target="_blank" id="a1"><i class="fa fa-facebook"></i></a>

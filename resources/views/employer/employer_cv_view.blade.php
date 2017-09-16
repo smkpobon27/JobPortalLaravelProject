@@ -1,4 +1,4 @@
-@extends('layout.seeker_main')
+@extends('layout.employer_main')
 @section('title', 'Jobseeker CV')
 @section('content')
 <section class="top" style="margin-top: 100px;">
