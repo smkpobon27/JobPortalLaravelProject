@@ -84,8 +84,9 @@
                                     <td>{{$user->phone}}</td>
                                     <td>{{$user->activity->location}}</td>
                                     <td>{{$user->pivot->created_at->format('d-M-Y')}}</td>
-                                    <td><a href="" class="btn btn-warning" style="border-radius: 0;"><i class="fa fa-trash"></i> DELETE</a></td>
-                                    <td><a href="" class="btn btn-default" style="border-radius: 0;"><i class="fa fa-eye"></i> VIEW CV</a></td>
+                                    <td><a href="/employer/application/{{$jobData->id}}/delete/{{$user->id}}" class="btn btn-warning" style="border-radius: 0;"><i class="fa fa-trash"></i> DELETE</a></td>
+                                    <td><a href="/employer/view/seeker-cv/{{$user->id}}" class="btn btn-default" style="border-radius: 0;"><i class="fa fa-eye"></i> VIEW CV</a></td>
+                                     <td><a href="/employer/email/{{$user->id}}" class="btn btn-default" style="border-radius: 0;"><i class="fa fa-envelope"></i> EMAIL</a></td>
                                 </tr>
                             @endforeach
                             </tbody>

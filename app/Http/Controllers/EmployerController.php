@@ -2,11 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Activity;
+use App\Attachment;
 use App\Company;
 use App\Job;
+use App\Link;
+use App\Mail\MailToSeeker;
+use App\Skill;
 use App\User;
+use App\Work;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 class EmployerController extends Controller
@@ -17,8 +24,11 @@ class EmployerController extends Controller
     }
     //show Company profile creation page
     public function createCompanyProfile(){
-    	$company = Company::where('user_id', Auth::id())->first();
-    	return view('employer.employer_register_stp_2', compact('company'));
+        if(!Company::where('user_id', Auth::id())->get()->isEmpty()){
+        	$company = Company::where('user_id', Auth::id())->first();
+        	return view('employer.employer_company_profile', compact('company'));
+        }
+        return view('employer.employer_register_stp_2');
     }
     //store Company profile data
     public function storeCompanyProfile(Request $request){
@@ -124,5 +134,31 @@ class EmployerController extends Controller
         $jobData = Job::find($id);
         $company = Company::where('user_id', Auth::id())->first();
         return view('employer.employer_job_view', compact('jobData','company'));
+    }
+    //Delete a seeker's job Application from employer job view page
+    public function deleteApplication($job_id, $id){
+        $job = Job::find($job_id);
+        $job->many_user()->detach($id);
+         return redirect()->route('employer.dashboard');
+     }
+     //CV view of seeker for Employer
+    public function employerCvView($id){
+        $user = User::find($id);
+        $activity = Activity::where('user_id', $id)->first();
+        $works = Work::where('user_id', $id)->get();
+        $skills = Skill::where('user_id', $id)->get();
+        $attachments = Attachment::where('user_id', $id)->get();
+        $links = Link::where('user_id', $id)->get();
+        return view('employer.employer_cv_view', compact('user','activity','works','skills','attachments','links'));
+    } 
+    //show the Email to seeker form 
+    public function showEmailToSeekerForm($id){
+        $seeker = User::find($id);
+        $user = User::find(Auth::id());
+        return view('employer.employer_email', compact('seeker', 'user'));
+    }
+    //Send the email
+    public function sendEmail(){
+        Mail::send(new MailToSeeker());
     }
 }

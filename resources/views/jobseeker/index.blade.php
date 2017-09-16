@@ -9,19 +9,12 @@
             <div class="container home_search">
                 <div class="row">
                     <div class="col-lg-6 col-lg-offset-3">
-                        <form class="form-inline">
+                        <form class="form-inline" action="/seeker/keyword-wise-jobs" method="get">
+                        {{csrf_field()}}
                           <div class="form-group">
-                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Keywords (i.e job title)">
+                            <input type="text" name="searchQuery" class="form-control" placeholder="Search Keywords" value="{{ old('searchQuery') }}" style="padding-left: 20px;padding-right: 200px;">
                           </div>
-                          <div class="form-group">
-                             <select name="city" class="form-control">
-                                <option>Select a Country</option>
-                                <option value="volvo">Volvo</option>
-                                <option value="saab">Saab</option>
-                                <option value="fiat">Fiat</option>
-                                <option value="audi">Audi</option>
-                            </select>
-                          </div>
+                          
                           <button type="submit" class="btn btn-default">Search</button>
                         </form>
                     </div>
@@ -35,19 +28,19 @@
             <div class="row col-lg-offset-1">
                 <div class="col-lg-2 h1home">
                     <h1>Find</h1>
-                    <a href="#">Search by Category</a>
+                    <a href="{{route('seeker.find_jobs')}}">Search by Category</a>
                 </div>
                 <div class="col-lg-2 h1home">
                     <h1>Your</h1>
-                    <a href="">Search by Industry</a>
+                    <a href="{{route('seeker.find_jobs')}}">Search by Industry</a>
                 </div>
                 <div class="col-lg-2 h1home">
                     <h1>Dream</h1>
-                    <a href="">Search by Company</a>
+                    <a href="{{route('seeker.find_jobs')}}">Search by Company</a>
                 </div>
                  <div class="col-lg-2 h1home" style="padding-bottom: 70px;">
                      <h1>Job</h1>
-                     <a href="">Search by City</a>
+                     <a href="{{route('seeker.find_jobs')}}">Search by City</a>
                  </div>
             </div>
             <div class="row">

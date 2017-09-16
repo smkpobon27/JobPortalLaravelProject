@@ -38,7 +38,7 @@ class SeekerController extends Controller
     }
 
     public function education(Request $request){
-    	Activity::where('user_id', Auth::id())->update(['college'=>$request->college, 'degree'=>$request->degree_level, 'field'=>$request->field, 'grade'=>$request->grade, 'country'=>$request->country, 'language'=>$request->language, 'interest'=>$request->interest]);
+    	Activity::where('user_id', Auth::id())->update(['college'=>$request->college, 'degree'=>$request->degree, 'field'=>$request->field, 'grade'=>$request->grade, 'country'=>$request->country, 'language'=>$request->language, 'interest'=>$request->interest]);
 
     	return redirect()->route('seeker.work');
     }
@@ -183,5 +183,26 @@ class SeekerController extends Controller
         $user->many_job()->attach($id);
         return redirect()->route('seeker.find_jobs');
     }
+    //seeker delete an applied job from dashboard
+    public function deleteJob($id){
+        $user = User::find(Auth::id());
+        $user->many_job()->detach($id);
+         return redirect()->route('seeker.dashboard');
+     } 
+     //Show Category wise jobs
+     public function showCategoryWiseJobs(Request $request){
+        $jobs = Job::whereIn('industry', $request->category)->get();
+         return view('jobseeker.seeker_find_jobs', compact('jobs'));
+     }
+     //show Location wise jobs
+     public function showLocationWiseJobs(Request $request){
+        $jobs = Job::whereIn('city', $request->location)->get();
+         return view('jobseeker.seeker_find_jobs', compact('jobs'));
+     }
+     //show jobs by Search Keywords
+     public function showJobsBySearchKeywords(Request $request){
+        $jobs = Job::where('title', 'like', '%'.$request->searchQuery.'%')->get();
+         return view('jobseeker.seeker_find_jobs', compact('jobs'));
+     }
 
 }//controller ends here

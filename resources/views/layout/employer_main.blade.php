@@ -43,7 +43,7 @@
                             <ul class="nav navbar-nav navbar-right">
                             @if(Auth::guest())
                                 <li><a href="{{route('employer.register')}}">Sign up</a></li>
-                                <li><a href="{{route('login')}}">Log in</a></li>
+                                <li><a href="{{route('employer.login')}}">Log in</a></li>
                                 <li id="for_emp"><a href="/">For Jobseeker</a></li>
                             @else
                             <li class="dropdown">

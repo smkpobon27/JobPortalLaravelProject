@@ -44,8 +44,15 @@
                                 <option value="Bank">Bank</option>
                                 <option value="IT/Software">IT/Software</option>
                                 <option value="Multinational">Multinational</option>
-                                <option value="Insurance">Insurance</option>
-                                <option value="Teaching">Teaching</option>
+                                <option value="Bank">Bank</option>
+                                <option value="Data Entry/Operator">Data Entry/Operator</option>
+                                <option value="Agricultural">Agricultural</option>
+                                <option value="Accounting/Finance">Accounting/Finance</option>
+                                <option value="Design/Creative">Design/Creative</option>
+                                <option value="Driving">Driving</option>
+                                <option value="Education/Training">Education/Training</option>
+                                <option value="Engineer/Architect">Engineer/Architect</option>
+                                <option value="Garments/Textile">Garments/Textile</option>
                             </select>
                         </div>
                         <div class="form-group">

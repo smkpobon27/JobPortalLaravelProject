@@ -14,8 +14,7 @@
                 <p><strong>Email: </strong>{{$user->email}}</p>
                 <p><strong>Phone: </strong>{{$user->phone}}</p>
                 <div>
-                    <a href="{{route('seeker.edit_cv')}}" class="btn btn-warning" style="border-radius: 0;"><i class="fa fa-pencil-square-o"></i> EDIT MY CV</a>
-                    <a href="" class="btn btn-default" style="border-radius: 0;"><i class="fa fa-download"></i> DOWNLOAD AS PDF</a>
+                    <a href="" class="btn btn-warning" style="border-radius: 0;"><i class="fa fa-download"></i> DOWNLOAD AS PDF</a>
                 </div>
             </div>
         </div>
@@ -77,14 +76,14 @@
                                 
                                 <table class="table">
                                     @foreach($skills as $skill)
-                                    <tr><td><li>
+                                    <tr><td>
                                         <p><strong>{{$skill->name}}</strong></p>
                                         <div class="col-lg-2">
                                             <p><strong>Level: </strong>{{$skill->level}}</p>
                                         </div>
                                         <div class="col-lg-2">
                                             <p><strong>Experience: </strong>{{$skill->experience}}</p>
-                                        </div></li>
+                                        </div>
                                     </td></tr>
                                     @endforeach
                                 </table>

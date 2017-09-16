@@ -29,6 +29,12 @@ class User extends Authenticatable
     public function isSeeker(){
         return $this->seeker;
     }
+    public function isEmployer(){
+        return $this->employer;
+    }
+    public function isAdmin(){
+        return $this->admin;
+    }
     // //User has one company
     public function company(){
         return $this->hasOne(Company::class);

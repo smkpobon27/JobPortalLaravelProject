@@ -3,12 +3,13 @@
 @section('title', 'Log in')
 
 @section('content')
+
     <section class="top" style="margin-top: 100px;">
        <div class="container-fluid">
         <div class="row">
             <div class="col-lg-4 col-lg-offset-4">
                <h4><strong>Log in and Explore yourself !</strong></h4>
-                <form class="form-horizontal" role="form" method="POST" action="{{ route('login') }}">
+                <form class="form-horizontal" role="form" method="POST" action="{{ route('employer.login') }}">
                 {{csrf_field()}}
                   <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                     <label for="email">Email address</label>
@@ -28,19 +29,15 @@
                             </span>
                       @endif
                   </div>
-                  <button type="submit" class="btn btn-warning form-control" style="text-transform: uppercase;border-radius:0;">Log in</button>
+                  <input type="hidden" name="employer" value="1">
+        
+                  <button type="submit" class="btn btn-warning form-control" style="text-transform: uppercase;border-radius:0;">Log in as Employer</button>
                 </form>
                 <br>
                 <p><strong>Not a member?</strong></p>
-                <div class="row">
-                  <div class="col-lg-6"><a class="btn btn-primary form-control" style="text-transform: uppercase;border-radius:0;">Sign up as Job Seeker</a></div>
-                  <div class="col-lg-6"><a class="btn btn-default form-control" style="text-transform: uppercase;border-radius:0;">Sign up as Employer</a></div>
-                </div>
-                <br>
-                 <br><br><br>
-
+                <button type="submit" class="btn btn-primary form-control" style="text-transform: uppercase;border-radius:0;">Sign up</button> <br><br><br>
             </div>
         </div>
         </div>
     </section>
-@endsection
+@endsection 

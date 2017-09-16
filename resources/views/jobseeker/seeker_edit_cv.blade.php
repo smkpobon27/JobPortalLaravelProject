@@ -32,13 +32,15 @@
                             <label for="location" class="col-sm-2 control-label">Lives in: </label>
                             <div class="col-sm-10">
                                 <select name="location" class="form-control" id="location">
-                                    <option value="Dhaka">Dhaka</option>
-                                    <option value="Rajshahi">Rajshahi</option>
-                                    <option value="Chittagong">Chittagong</option>
-                                    <option value="Sylhet">Sylhet</option>
-                                    <option value="Barisal">Barisal</option>
-                                    <option value="Comilla">Comilla</option>
-                                    <option value="Dinajpur">Dinajpur</option>
+                                @foreach($activities as $activity)
+                                    <option value="Dhaka" @if($activity->location == "Dhaka"){{'selected="selected"'}}@endif>Dhaka</option>
+                                    <option value="Rajshahi"@if($activity->location == "Rajshahi"){{'selected="selected"'}}@endif>Rajshahi</option>
+                                    <option value="Chittagong"@if($activity->location == "Chittagong"){{'selected="selected"'}}@endif>Chittagong</option>
+                                    <option value="Sylhet"@if($activity->location == "Sylhet"){{'selected="selected"'}}@endif>Sylhet</option>
+                                    <option value="Barisal"@if($activity->location == "Barisal"){{'selected="selected"'}}@endif>Barisal</option>
+                                    <option value="Comilla"@if($activity->location == "Comilla"){{'selected="selected"'}}@endif>Comilla</option>
+                                    <option value="Dinajpur"@if($activity->location == "Dinajpur"){{'selected="selected"'}}@endif>Dinajpur</option>
+                                @endforeach
                                 </select>
                             </div>
                         </div>
@@ -58,15 +60,17 @@
                         <label class="col-sm-2 control-label">Gender: </label>
                             <div class="col-sm-10">
                                 <div class="radio">
+                                @foreach($activities as $activity)
                                     <label>
-                                        <input type="radio" name="gender" id="male" value="male" checked> Male
+                                        <input type="radio" name="gender" id="male" value="male" @if($activity->gender == "male"){{' checked'}}@endif> Male
                                     </label>
                                 </div>
                                 <div class="radio">
                                     <label>
-                                        <input type="radio" name="gender" id="female" value="female"> Female
+                                        <input type="radio" name="gender" id="female" value="female"@if($activity->gender == "female"){{' checked'}}@endif> Female
                                     </label>
                                 </div>
+                                @endforeach
                             </div>
                         </div>
                         <div class="form-group">
@@ -115,12 +119,14 @@
                                 <input type="text" name="college" class="form-control" id="college" value="{{$activity->college}}" placeholder="Institution name">
                             </div>
                             <div class="form-group">
-                                <label for="degree">Degree Level</label>
-                                <select name="degree" class="form-control" id="degree">
-                                    <option value="Bachelor">Bachelor</option>
-                                    <option value="Master's">Master's</option>
-                                    <option value="Diploma">Diploma</option>
-                                    <option value="SSC/HSC">SSC/HSC</option>
+                                <label for="degree_level">Degree Level</label>
+                                <select name="degree" class="form-control" id="degree_level">
+                                    @foreach($activities as $activity)
+                                    <option value="Bachelor"@if($activity->degree == "Bachelor"){{' selected="selected"'}}@endif>Bachelor</option>
+                                    <option value="Master's"@if($activity->degree == "Master's"){{' selected="selected"'}}@endif>Master's</option>
+                                    <option value="Diploma"@if($activity->degree == "Diploma"){{' selected="selected"'}}@endif>Diploma</option>
+                                    <option value="SSC/HSC"@if($activity->degree == "SSC/HSC"){{' selected="selected"'}}@endif>SSC/HSC</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
@@ -137,10 +143,12 @@
                             <div class="form-group">
                                 <label for="country">Country</label>
                                 <select name="country" class="form-control" id="country">
-                                    <option value="Bangladesh">Bangladesh</option>
-                                    <option value="India">India</option>
-                                    <option value="USA">USA</option>
-                                    <option value="Australia">Australia</option>
+                                @foreach($activities as $activity)
+                                    <option value="Bangladesh"@if($activity->country == "Bangladesh"){{'selected="selected"'}}@endif>Bangladesh</option>
+                                    <option value="India"@if($activity->country == "India"){{'selected="selected"'}}@endif>India</option>
+                                    <option value="USA"@if($activity->country == "USA"){{'selected="selected"'}}@endif>USA</option>
+                                    <option value="Australia"@if($activity->country == "Australia"){{'selected="selected"'}}@endif>Australia</option>
+                                @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
@@ -495,7 +503,7 @@ jQuery(document).ready(function($) {
             //Education data ajax
             $('#edu_save').click(function(event) {
                 var clg = $('#college').val();
-                var degree = $('#degree').val();
+                var degree = $('#degree_level').val();
                 var field = $('#field').val();
                 var grade = $('#grade').val();
                 var country = $('#country').val();
