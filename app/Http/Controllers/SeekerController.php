@@ -204,6 +204,29 @@ class SeekerController extends Controller
         $jobs = Job::where('title', 'like', '%'.$request->searchQuery.'%')->get();
          return view('jobseeker.seeker_find_jobs', compact('jobs'));
      }
+     //show seeker  Settings
+     public function showUserSettings(){
+        $user = User::find(Auth::id());
+          return view('jobseeker.seeker_setting', compact('user'));
+      } 
+      //store seeker settings
+      public function storeUserSettings(Request $request){
+        $user = User::find(Auth::id());
+        $old_password = bcrypt($request->old_password);
+        echo $old_password;
+        $new_password = $request->new_password;
+
+        if($old_password === $user->password){
+            $user->password = bcrypt($new_password);
+        }
+        // return redirect()->route('seeker.settings');
+      }
+      //download CV
+      public function downloadCV($id){
+        $file = Attachment::find($id);
+        $pathToFile = 'storage/attachments/'.$file->document;
+          return response()->download($pathToFile);
+      }
       //contact me page
      public function contact(){
          return view('contact');

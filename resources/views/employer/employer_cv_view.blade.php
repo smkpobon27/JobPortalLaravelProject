@@ -14,7 +14,7 @@
                 <p><strong>Email: </strong>{{$user->email}}</p>
                 <p><strong>Phone: </strong>{{$user->phone}}</p>
                 <div>
-                    <a href="" class="btn btn-warning" style="border-radius: 0;"><i class="fa fa-download"></i> DOWNLOAD AS PDF</a>
+                    {{-- <a href="/htmltopview/{{$user->id}}" class="btn btn-warning" style="border-radius: 0;"><i class="fa fa-download"></i> DOWNLOAD AS PDF</a> --}}
                 </div>
             </div>
         </div>
@@ -101,7 +101,7 @@
                                     <div class="col-lg-12">
                                         <h4><strong>Attachments</strong></h4><hr>
                                         @foreach($attachments as $attachment)
-                                        <a href="{{$attachment->document}}">{{$attachment->name}}</a>
+                                        <a href="/employer/download-cv/{{$attachment->id}}">{{$attachment->name}}</a> <br>
                                         @endforeach
                                         <h4><strong>Links</strong></h4><hr>
                                         @foreach($links as $link)

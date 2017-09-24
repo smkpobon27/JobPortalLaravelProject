@@ -29,7 +29,6 @@
 
                     <ul class="nav nav-tabs">
                         <li role="presentation" class="active"><a href="#">My Applications</a></li>
-                        <li role="presentation"><a href="#">Account Settings</a></li>
                     </ul>
 
                     <div id="myApplications">

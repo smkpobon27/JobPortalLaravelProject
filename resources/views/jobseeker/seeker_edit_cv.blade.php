@@ -249,7 +249,7 @@
                 <div class="col-lg-12">
                     <h4><strong>Attachments</strong></h4>
                      @foreach($attachments as $attachment)
-                        <p><a href="{{$attachment->document}}">{{$attachment->name}}</a></p>
+                        <a href="/seeker/download-cv/{{$attachment->id}}">{{$attachment->name}}</a> <br>
                      @endforeach
                     <form action="{{route('seeker.attachment')}}" method="post" enctype="multipart/form-data">
                     {{csrf_field()}}

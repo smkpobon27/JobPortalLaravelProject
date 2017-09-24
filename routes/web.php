@@ -37,6 +37,9 @@ Route::group(['middleware'=>['auth','seeker']], function(){
 	Route::get('seeker/job/apply/{id}', 'SeekerController@showApplyJobForm');
 	Route::get('seeker/apply/successfull/{id}', 'SeekerController@appliedToJob');
 	Route::get('seeker/job/delete/{id}', 'SeekerController@deleteJob');
+	Route::get('seeker/settings', 'SeekerController@showUserSettings')->name('seeker.settings');
+	Route::post('seeker/settings', 'SeekerController@storeUserSettings');
+	Route::get('seeker/download-cv/{id}', 'SeekerController@downloadCV');
 	
 });
 
@@ -67,6 +70,9 @@ Route::group(['middleware'=>['auth', 'employer']], function(){
 	Route::get('/employer/email/{id}', 'EmployerController@showEmailToSeekerForm');
 	Route::post('/employer/email/send', 'EmployerController@sendEmail');
 	Route::get('/employer/cv-list', 'EmployerController@allCvList')->name('employer_cv_view');
+	Route::get('employer/download-cv/{id}', 'EmployerController@downloadCV');
+	// Route::get('/htmltopview/{id}',array('as'=>'htmltopdfview','uses'=>'EmployerController@htmltopdfview'));
+
 });
 //========================================================================================
 //Admin normal routes
@@ -85,6 +91,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>['auth','admin']], function(){
 	Route::get('/cv-list', 'AdminController@allCvList')->name('all_cv');
 	Route::get('/user/view-cv/{id}', 'AdminController@viewCv');
 	// Route::get('/user/delete-cv/{id}', 'AdminController@deleteCv');
+	Route::get('/download-cv/{id}', 'AdminController@downloadCV');
 });
 
 //----------------------------------------------------------------------------------------

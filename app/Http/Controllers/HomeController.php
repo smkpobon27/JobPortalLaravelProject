@@ -25,8 +25,5 @@ class HomeController extends Controller
     {
         return redirect('/');
     }
-     //contact me page
-     public function contact(){
-         return view('contact');
-     }
+   
 }

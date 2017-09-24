@@ -34,6 +34,7 @@
                                     @if(!Auth::guest())
                                         <li><a href="/seeker/dashboard">Dashboard</a></li>
                                         <li><a href="{{route('seeker.edit_cv')}}">My CV</a></li>
+                                        <li><a href="{{route('seeker.settings')}}">Settings</a></li>
                                     @endif
                                     <li><a href="{{route('seeker.find_jobs')}}">Find jobs</a></li>
                                     <li><a href="#">Job journal</a></li>

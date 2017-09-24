@@ -6,6 +6,11 @@
 
     <section class="top" style="margin-top: 100px;">
         <div class="container">
+        @if(session('msg'))
+        <div class="alert alert-success">
+            {{session('msg')}}
+        </div>
+        @endif
             <div class="row">
                 <div class="col-lg-2">
                     <img src="{{asset('storage/company_images/'.$company->image)}}" alt="Brand Image" class="img-thumbnail" style="height: 180px; width: 500px;">
@@ -15,7 +20,7 @@
                     <p>Welcome to your company's workspace [ <strong>{{$user->name}}</strong> ]</p>
                     <div>
                         <a href="{{route('employer.post_job')}}" class="btn btn-warning" style="border-radius: 0;"><i class="fa fa-arrow-circle-up"></i> POST A JOB</a>
-                        <a href="" class="btn btn-default" style="border-radius: 0;"><i class="fa fa-database"></i> SEARCH CV DATABASE</a>
+                        <a href="/employer/cv-list" class="btn btn-default" style="border-radius: 0;"><i class="fa fa-database"></i> SEARCH CV DATABASE</a>
                     </div>
                 </div>
             </div>
@@ -29,7 +34,7 @@
 
                     <ul class="nav nav-tabs">
                         <li role="presentation" class="active"><a href="#">My Jobs</a></li>
-                        <li role="presentation"><a href="#">Account Settings</a></li>
+                        {{-- <li role="presentation"><a href="#">Account Settings</a></li> --}}
                     </ul>
 
                     <div id="myJobs">

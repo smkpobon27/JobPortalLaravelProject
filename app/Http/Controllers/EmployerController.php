@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
+use PDF;
 
 class EmployerController extends Controller
 {
@@ -160,6 +161,8 @@ class EmployerController extends Controller
     //Send the email
     public function sendEmail(){
         Mail::send(new MailToSeeker());
+
+        return redirect()->route('employer.dashboard')->with('msg',"Email Sent Successfully");
     }
     //show all cv
     public function allCvList(){
@@ -167,6 +170,34 @@ class EmployerController extends Controller
 
         return view('employer.employer_cv_search', compact('users'));
      }
+     //download CV
+      public function downloadCV($id){
+        $file = Attachment::find($id);
+        $pathToFile = 'storage/attachments/'.$file->document;
+          return response()->download($pathToFile);
+      }
+      
+      //Html to PDF file download
+
+      //[[ http://www.expertphp.in/article/generate-pdf-from-html-in-php-laravel-using-dompdf-library ]]
+
+      // public function htmltopdfview(Request $request){
+      //   $user = User::find($request->id);
+      //   $activity = Activity::where('user_id', $request->id)->first();
+      //   $works = Work::where('user_id', $request->id)->get();
+      //   $skills = Skill::where('user_id', $request->id)->get();
+      //   $attachments = Attachment::where('user_id', $request->id)->get();
+      //   $links = Link::where('user_id', $request->id)->get();
+
+      //   // view()->share('user',$user,'activity',$activity,'works',$works,'skills',$skills,'attachments',$attachments,'links',$links);
+
+
+        
+      //   $pdf = PDF::loadView('employer.employer_cv_view',compact('user','activity','works','skills','attachments','links'));
+      //   return $pdf->download('employer_cv_view');
+        
+      //   // return view('employer.employer_cv_view',compact('user','activity','works','skills','attachments','links'));
+      // }
        //contact me page
      public function contact(){
          return view('contact');

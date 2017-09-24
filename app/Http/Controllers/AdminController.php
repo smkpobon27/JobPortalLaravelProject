@@ -92,4 +92,11 @@ class AdminController extends Controller
     //     return redirect()->route('all_cv');
     // } 
 
+    //download CV
+      public function downloadCV($id){
+        $file = Attachment::find($id);
+        $pathToFile = 'storage/attachments/'.$file->document;
+          return response()->download($pathToFile);
+      }
+
 }

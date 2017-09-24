@@ -15,7 +15,7 @@
                 <p><strong>Phone: </strong>{{$user->phone}}</p>
                 <div>
                     <a href="{{route('seeker.edit_cv')}}" class="btn btn-warning" style="border-radius: 0;"><i class="fa fa-pencil-square-o"></i> EDIT MY CV</a>
-                    <a href="" class="btn btn-default" style="border-radius: 0;"><i class="fa fa-download"></i> DOWNLOAD AS PDF</a>
+                    {{-- <a href="" class="btn btn-default" style="border-radius: 0;"><i class="fa fa-download"></i> DOWNLOAD AS PDF</a> --}}
                 </div>
             </div>
         </div>
@@ -102,7 +102,7 @@
                                     <div class="col-lg-12">
                                         <h4><strong>Attachments</strong></h4><hr>
                                         @foreach($attachments as $attachment)
-                                        <a href="{{$attachment->document}}">{{$attachment->name}}</a>
+                                        <a href="/seeker/download-cv/{{$attachment->id}}">{{$attachment->name}}</a> <br>
                                         @endforeach
                                         <h4><strong>Links</strong></h4><hr>
                                         @foreach($links as $link)
